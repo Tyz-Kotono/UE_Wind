@@ -1,0 +1,26 @@
+﻿#include "/Engine/Private/Common.ush"
+#include "/Engine/Public/Platform.ush"
+float3 TargetColour;
+
+RWTexture2D<float4> GrassPositionTexture2D;
+// ===== 主函数 =====
+[numthreads(16,16,1)]
+void ProceduralGrassMain(
+	uint3 DTid : SV_DispatchThreadID)
+{
+	uint2 TextureSize;
+
+	GrassPositionTexture2D.GetDimensions(
+		TextureSize.x,
+		TextureSize.y);
+
+	if (any(DTid.xy >= TextureSize))
+		return;
+
+	float2 uv =
+		float2(DTid.xy) /
+		float2(TextureSize - 1);
+
+	GrassPositionTexture2D[DTid.xy] =
+		float4(uv, 0.0, 1.0);
+}
