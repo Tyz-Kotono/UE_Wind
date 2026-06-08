@@ -73,3 +73,18 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+DerivedDataCache/*
+*/Binaries
+*/Intermediate
+
+
+# Binary Files
+Binaries/
+*/Binaries/
+**/Binaries/
+KuroAudio/Binaries/
+
+# 或者更通用的写法
+**/Binaries/
+**/Binaries/**
